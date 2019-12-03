@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://martinjennings.com/sitemap.xml
