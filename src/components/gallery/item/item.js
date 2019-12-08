@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import { Title, Copy } from './item.css';
 
-const Item = ({ title, copy, image }) => (
+const Item = ({ elements : { title, description, image } }) => (
   <figure>
-    <Img fluid={image ? image.childImageSharp.fluid : {}} alt={title} />
+    <img src={image.value[0].url + "?h=500"} alt={title.value} />
     <figcaption>
-      <Title>{title}</Title>
-      <Copy>{copy}</Copy>
+      <Title>{title.value}</Title>
+      <Copy>{description.value}</Copy>
     </figcaption>
   </figure>
 );
 
 Item.propTypes = {
-  title: PropTypes.string,
-  copy: PropTypes.string,
-  image: PropTypes.object.isRequired,
+   title: PropTypes.object.isRequired,
+   description: PropTypes.object.isRequired,
+   image: PropTypes.object.isRequired
 };
 
 export default Item;

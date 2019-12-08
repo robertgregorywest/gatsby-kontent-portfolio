@@ -41,6 +41,9 @@ export const query = graphql`
     allKontentItemSculpture {
       nodes {
         elements {
+          title {
+            value
+          }
           description {
             value
           }
@@ -48,9 +51,6 @@ export const query = graphql`
             value {
              url 
             }
-          }
-          title {
-            value
           }
         }
       }
