@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
-import Gallery from 'components/gallery';
-import IOExample from 'components/io-example';
-import Modal from 'containers/modal';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
+import Masonry from 'react-masonry-component'
+
+import '../styles/masonry.css'
 
 const Index = ({ data }) => (
   <Layout>
@@ -15,9 +15,25 @@ const Index = ({ data }) => (
         {data.allKontentItemHome.nodes[0].elements.intro.value}
       </Title>
     </Box>
-    <Gallery items={data.allKontentItemSculpture.nodes} />
-    {/* <div style={{ height: '50vh' }} />
-    <IOExample /> */}
+    <Masonry className="showcase">
+      {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
+        <div key={work.title} className="showcase__item">
+          <figure className="card">
+            <Link to={`/works/${work.slug}`} className="card__image">
+              <img src={`${work.image.value[0].url}?w=450`} alt={work.title.value} />
+            </Link>
+            <figcaption className="card__caption">
+              <h6 className="card__title">
+                {work.title.value}
+              </h6>
+              <div className="card__description">
+                <p>{work.description.value}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      ))}
+    </Masonry>
   </Layout>
 );
 
