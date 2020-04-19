@@ -4,6 +4,7 @@ import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
 import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image'
 import Masonry from 'react-masonry-component'
 
 import '../styles/masonry.css'
@@ -20,7 +21,7 @@ const Index = ({ data }) => (
         <div key={work.title} className="showcase__item">
           <figure className="card">
             <Link to={`/works/${work.slug}`} className="card__image">
-              <img src={`${work.image.value[0].url}?w=450`} alt={work.title.value} />
+              <Img fixed={work.image.value[0].fixed} />
             </Link>
             <figcaption className="card__caption">
               <h6 className="card__title">
@@ -65,7 +66,9 @@ export const query = graphql`
           }
           image {
             value {
-             url 
+              fixed(width: 450) {
+                ...KontentAssetFixed
+             }
             }
           }
         }

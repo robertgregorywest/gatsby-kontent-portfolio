@@ -39,5 +39,11 @@ module.exports = {
         languageCodenames: ['default'],
       },
     },
+    {
+      resolve: `@rshackleton/gatsby-transformer-kontent-image`,
+      options: {
+        remote: true,
+      },
+    },
   ],
 };
