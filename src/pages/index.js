@@ -16,20 +16,18 @@ const Index = ({ data }) => (
         {data.allKontentItemHome.nodes[0].elements.intro.value}
       </Title>
     </Box>
-    <Masonry className="showcase">
+    <Masonry className="showcase" options="{ numColumns: 4 }" >
       {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
         <div key={work.title} className="showcase__item">
           <figure className="card">
             <Link to={`/works/${work.slug}`} className="card__image">
-              <Img fixed={work.image.value[0].fixed} />
+              <Img fluid={work.image.value[0].fluid} />
             </Link>
             <figcaption className="card__caption">
               <h6 className="card__title">
                 {work.title.value}
               </h6>
-              <div className="card__description">
-                <p>{work.description.value}</p>
-              </div>
+              <p className="card__description">{work.description.value}</p>
             </figcaption>
           </figure>
         </div>
@@ -66,8 +64,8 @@ export const query = graphql`
           }
           image {
             value {
-              fixed(width: 450) {
-                ...KontentAssetFixed
+              fluid(maxWidth: 450) {
+                ...KontentAssetFluid
              }
             }
           }
