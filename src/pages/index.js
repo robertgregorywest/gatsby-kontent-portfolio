@@ -6,7 +6,6 @@ import Title from 'components/title';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Masonry from 'react-masonry-component';
-
 import '../styles/masonry.css';
 
 const Index = ({ data }) => (
