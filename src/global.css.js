@@ -89,6 +89,8 @@ export default createGlobalStyle`
   }
 
   p {
+    font-size: 2rem;
     margin-bottom: 2rem;
+    line-height: 1.5;
   }
 `;

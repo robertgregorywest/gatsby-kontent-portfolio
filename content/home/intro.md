@@ -1,1 +1,0 @@
-Martin Jennings makes portrait sculptures and public statues, often incorporating carved inscriptions into the work. He has been commissioned by the National Portrait Gallery, St. Paul's Cathedral, the Palace of Westminster, the University of Oxford and many other national institutions.

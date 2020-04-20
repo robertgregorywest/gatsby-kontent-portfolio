@@ -50,7 +50,8 @@
 
 .card__title
 {
-    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    margin-bottom: 0.8rem;
 }
 
 .card__image
@@ -67,5 +68,6 @@
 .card__description
 {
     margin-bottom: 0;
+    font-size: 1.5rem;
 }
   
