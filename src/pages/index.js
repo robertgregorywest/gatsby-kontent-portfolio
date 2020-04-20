@@ -4,9 +4,9 @@ import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
 import { Link, graphql } from 'gatsby';
-import Masonry from 'react-masonry-component'
-
-import '../styles/masonry.css'
+import Img from 'gatsby-image';
+import Masonry from 'react-masonry-component';
+import '../styles/masonry.css';
 
 const Index = ({ data }) => (
   <Layout>
@@ -19,16 +19,12 @@ const Index = ({ data }) => (
       {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
         <div key={work.title} className="showcase__item">
           <figure className="card">
-            <Link to={`/works/${work.slug}`} className="card__image">
-              <img src={`${work.image.value[0].url}?w=450`} alt={work.title.value} />
+            <Link to={`/sculpture/${work.slug.value}`} className="card__image">
+              <Img fluid={work.image.value[0].fluid} />
             </Link>
             <figcaption className="card__caption">
-              <h6 className="card__title">
-                {work.title.value}
-              </h6>
-              <div className="card__description">
-                <p>{work.description.value}</p>
-              </div>
+              <h6 className="card__title">{work.title.value}</h6>
+              <p className="card__description">{work.description.value}</p>
             </figcaption>
           </figure>
         </div>
@@ -54,7 +50,7 @@ export const query = graphql`
         }
       }
     }
-    allKontentItemSculpture {
+    allKontentItemSculpture(sort: {fields: system___lastModified, order: DESC}) {
       nodes {
         elements {
           title {
@@ -65,8 +61,13 @@ export const query = graphql`
           }
           image {
             value {
-             url 
+              fluid(maxWidth: 450) {
+                ...KontentAssetFluid
+              }
             }
+          }
+          slug {
+            value
           }
         }
       }
