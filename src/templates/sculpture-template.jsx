@@ -26,7 +26,9 @@ const SculptureTemplate = ({ data }) => (
         <figure className="sculpture">
             <Img fluid={data.kontentItemSculpture.elements.image.value[0].fluid} />
             <figcaption className="sculpture__caption">
-                <p className="sculpture__description">{data.kontentItemSculpture.elements.description.value}</p>
+                <p className="sculpture__description">
+                    {data.kontentItemSculpture.elements.description.value}
+                </p>
             </figcaption>
         </figure>
     </Box>

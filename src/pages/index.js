@@ -50,7 +50,7 @@ export const query = graphql`
         }
       }
     }
-    allKontentItemSculpture {
+    allKontentItemSculpture(sort: {fields: system___lastModified, order: DESC}) {
       nodes {
         elements {
           title {
