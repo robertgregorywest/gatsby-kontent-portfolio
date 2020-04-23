@@ -16,6 +16,7 @@ const Index = ({ data }) => (
       </Title>
     </Box>
     <Masonry className="showcase">
+            {/* {data.kontentItemHome.elements.map(({ elements: work }) => ( */}
       {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
         <div key={work.title} className="showcase__item">
           <figure className="card">
@@ -69,7 +70,6 @@ export const query = graphql`
                     }
                     description
                   }
-                  name
                 }
               }
             }
