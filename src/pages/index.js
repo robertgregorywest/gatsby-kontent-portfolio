@@ -12,7 +12,7 @@ const Index = ({ data }) => (
   <Layout>
     <Box>
       <Title as="h2" size="large">
-        {data.allKontentItemHome.nodes[0].elements.intro.value}
+        {data.kontentItemHome.elements.intro.value}
       </Title>
     </Box>
     <Masonry className="showcase">
@@ -24,7 +24,7 @@ const Index = ({ data }) => (
             </Link>
             <figcaption className="card__caption">
               <h6 className="card__title">{work.title.value}</h6>
-              <p className="card__description">{work.description.value}</p>
+              <p className="card__description">{work.image.value[0].description}</p>
             </figcaption>
           </figure>
         </div>
@@ -41,11 +41,38 @@ export default Index;
 
 export const query = graphql`
   query {
-    allKontentItemHome {
-      nodes {
-        elements {
-          intro {
-            value
+    kontentItemHome {
+      elements {
+        intro {
+          value
+        }
+        seo_metadata_example_to_include_in_any_type__meta_description {
+          value
+        }
+        seo_metadata_example_to_include_in_any_type__meta_title {
+          value
+        }
+        works {
+          linked_items {
+            ... on KontentItemWork {
+              elements {
+                slug {
+                  value
+                }
+                title {
+                  value
+                }
+                assets {
+                  value {
+                    fluid(maxWidth: 450) {
+                      ...KontentAssetFluid
+                    }
+                    description
+                  }
+                  name
+                }
+              }
+            }
           }
         }
       }
@@ -56,14 +83,12 @@ export const query = graphql`
           title {
             value
           }
-          description {
-            value
-          }
           image {
             value {
               fluid(maxWidth: 450) {
                 ...KontentAssetFluid
               }
+              description
             }
           }
           slug {
