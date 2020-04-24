@@ -25,15 +25,15 @@ const WorkTemplate = ({ data }) => (
       </Title>
     </Box>
 
-    <Masonry className="showcase">
+    <Masonry className="work">
       {data.kontentItemWork.elements.assets.value.map(({ fluid, description }, id) => (
-        <div key={id} className="showcase__item">
-          <figure className="card">
-            <div className="card__image">
+        <div key={id} className="work__item">
+          <figure className="work__card">
+            <div className="work__image">
               <Img fluid={fluid} />
             </div>
-            <figcaption className="card__caption">
-              <p className="card__description">{description}</p>
+            <figcaption className="work__caption">
+              <p className="work__description">{description}</p>
             </figcaption>
           </figure>
         </div>
@@ -63,7 +63,7 @@ export const query = graphql`
         }
         assets {
           value {
-            fluid(maxWidth: 650) {
+            fluid(maxWidth: 750) {
               ...KontentAssetFluid
             }
             description
