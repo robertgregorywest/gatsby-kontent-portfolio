@@ -21,7 +21,7 @@ const Index = ({ data }) => (
           {work.assets.value.map(asset => (
             <div key={asset.name} className="showcase__item">
               <figure className="card">
-                <Link to={`/sculpture/${work.slug.value}`} className="card__image">
+                <Link to={`/work/${work.slug.value}`} className="card__image">
                   <Img fluid={asset.fluid} />
                 </Link>
                 <figcaption className="card__caption">

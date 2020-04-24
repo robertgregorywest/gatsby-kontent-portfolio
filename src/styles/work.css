@@ -1,0 +1,65 @@
+.showcase.is-loading
+{
+  visibility: hidden;
+}
+
+.showcase
+{
+    margin: 0 4rem;
+}
+
+.showcase__item
+{
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+@media screen and (min-width: 401px)
+{
+    .showcase__item
+    {
+        box-sizing: border-box;
+        float: left;
+        padding-right: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 750px)
+{
+    .showcase__item
+    {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1600px)
+{
+    .showcase__item
+    {
+        width: 33.3%;
+    }
+}
+
+.card__title
+{
+    font-size: 1.75rem;
+    margin-bottom: 0.8rem;
+}
+
+.card__image
+{
+    display: block;
+    position: relative;
+}
+
+.card__caption
+{
+    padding: 1rem;
+}
+
+.card__description
+{
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+  
