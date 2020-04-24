@@ -16,19 +16,22 @@ const Index = ({ data }) => (
       </Title>
     </Box>
     <Masonry className="showcase">
-            {/* {data.kontentItemHome.elements.map(({ elements: work }) => ( */}
-      {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
-        <div key={work.title} className="showcase__item">
-          <figure className="card">
-            <Link to={`/sculpture/${work.slug.value}`} className="card__image">
-              <Img fluid={work.image.value[0].fluid} />
-            </Link>
-            <figcaption className="card__caption">
-              <h6 className="card__title">{work.title.value}</h6>
-              <p className="card__description">{work.image.value[0].description}</p>
-            </figcaption>
-          </figure>
-        </div>
+      {data.kontentItemHome.elements.works.linked_items.map(({ elements: work }) => (
+        <React.Fragment key={work.slug.value}>
+          {work.assets.value.map(asset => (
+            <div key={asset.name} className="showcase__item">
+              <figure className="card">
+                <Link to={`/sculpture/${work.slug.value}`} className="card__image">
+                  <Img fluid={asset.fluid} />
+                </Link>
+                <figcaption className="card__caption">
+                  <h6 className="card__title">{work.title.value}</h6>
+                  <p className="card__description">{asset.description}</p>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
+        </React.Fragment>
       ))}
     </Masonry>
   </Layout>
@@ -68,31 +71,12 @@ export const query = graphql`
                     fluid(maxWidth: 450) {
                       ...KontentAssetFluid
                     }
+                    name
                     description
                   }
                 }
               }
             }
-          }
-        }
-      }
-    }
-    allKontentItemSculpture(sort: {fields: system___lastModified, order: DESC}) {
-      nodes {
-        elements {
-          title {
-            value
-          }
-          image {
-            value {
-              fluid(maxWidth: 450) {
-                ...KontentAssetFluid
-              }
-              description
-            }
-          }
-          slug {
-            value
           }
         }
       }
