@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
-import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import '../styles/masonry.css';
+import { graphql } from 'gatsby';
 import Gallery from 'components/gallery';
 import Work from 'components/work';
 

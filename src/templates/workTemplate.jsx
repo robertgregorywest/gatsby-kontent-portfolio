@@ -5,9 +5,8 @@ import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
 import Head from 'components/head';
-import Img from 'gatsby-image';
-import Masonry from 'react-masonry-component';
-import '../styles/work.css';
+import Gallery from 'components/gallery';
+import WorkDetail from 'components/workDetail';
 
 const WorkTemplate = ({ data }) => (
   <Layout>
@@ -25,20 +24,11 @@ const WorkTemplate = ({ data }) => (
       </Title>
     </Box>
 
-    <Masonry className="work">
+    <Gallery>
       {data.kontentItemWork.elements.assets.value.map(({ fluid, description }, id) => (
-        <div key={id} className="work__item">
-          <figure className="work__card">
-            <div className="work__image">
-              <Img fluid={fluid} />
-            </div>
-            <figcaption className="work__caption">
-              <p className="work__description">{description}</p>
-            </figcaption>
-          </figure>
-        </div>
+        <WorkDetail key={id} fluid={fluid} description={description}/>
       ))}
-    </Masonry>
+    </Gallery>
   </Layout>
 );
 

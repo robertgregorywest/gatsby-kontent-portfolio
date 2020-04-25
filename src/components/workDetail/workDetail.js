@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import { Container, StyledLink, Caption, Title, Description } from './work.css';
+import { Container, ImageContainer, Caption, Description } from './workDetail.css';
 
-const Work = ({ slug, title, fluid, description }) => (
+const WorkDetail = ({ fluid, description }) => (
   <Container>
     <figure>
-      <StyledLink to={`/work/${slug}`}>
+      <ImageContainer>
         <Img fluid={fluid} alt={description} />
-      </StyledLink>
+      </ImageContainer>
       <Caption>
-        <Title>{title}</Title>
         <Description>{description}</Description>
       </Caption>
     </figure>
   </Container>
 );
 
-Work.propTypes = {
-  slug: PropTypes.string,
-  title: PropTypes.string,
+WorkDetail.propTypes = {
   fluid: PropTypes.object.isRequired,
   description: PropTypes.string,
 };
 
-export default Work;
+export default WorkDetail;
