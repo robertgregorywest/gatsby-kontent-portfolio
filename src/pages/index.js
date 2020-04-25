@@ -5,8 +5,9 @@ import Box from 'components/box';
 import Title from 'components/title';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Masonry from 'react-masonry-component';
 import '../styles/masonry.css';
+import Gallery from 'components/gallery';
+import Work from 'components/work';
 
 const Index = ({ data }) => (
   <Layout>
@@ -15,25 +16,15 @@ const Index = ({ data }) => (
         {data.kontentItemHome.elements.intro.value}
       </Title>
     </Box>
-    <Masonry className="showcase">
+    <Gallery>
       {data.kontentItemHome.elements.works.linked_items.map(({ elements: work }) => (
         <React.Fragment key={work.slug.value}>
           {work.assets.value.map(asset => (
-            <div key={asset.name} className="showcase__item">
-              <figure className="card">
-                <Link to={`/work/${work.slug.value}`} className="card__image">
-                  <Img fluid={asset.fluid} />
-                </Link>
-                <figcaption className="card__caption">
-                  <h6 className="card__title">{work.title.value}</h6>
-                  <p className="card__description">{asset.description}</p>
-                </figcaption>
-              </figure>
-            </div>
+            <Work key={asset.Name} slug={work.slug.value} title={work.title.value} fluid={asset.fluid} description={asset.description}/>
           ))}
         </React.Fragment>
       ))}
-    </Masonry>
+    </Gallery>
   </Layout>
 );
 
