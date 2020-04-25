@@ -25,11 +25,11 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const sculptureTemplate = path.resolve('./src/templates/sculpture-template.jsx')
+    const workTemplate = path.resolve('./src/templates/workTemplate.jsx')
 
     graphql(`
     {
-      allKontentItemSculpture {
+      allKontentItemWork {
         nodes {
           elements {
             slug {
@@ -45,10 +45,10 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors)
       }
 
-      _.each(result.data.allKontentItemSculpture.nodes, node => {
+      _.each(result.data.allKontentItemWork.nodes, node => {
         createPage({
-          path: `/sculpture/${node.elements.slug.value}/`,
-          component: slash(sculptureTemplate),
+          path: `/work/${node.elements.slug.value}/`,
+          component: slash(workTemplate),
           context: { slug: `${node.elements.slug.value}` },
         })
       })

@@ -12,22 +12,26 @@ const Index = ({ data }) => (
   <Layout>
     <Box>
       <Title as="h2" size="large">
-        {data.allKontentItemHome.nodes[0].elements.intro.value}
+        {data.kontentItemHome.elements.intro.value}
       </Title>
     </Box>
     <Masonry className="showcase">
-      {data.allKontentItemSculpture.nodes.map(({ elements: work }) => (
-        <div key={work.title} className="showcase__item">
-          <figure className="card">
-            <Link to={`/sculpture/${work.slug.value}`} className="card__image">
-              <Img fluid={work.image.value[0].fluid} />
-            </Link>
-            <figcaption className="card__caption">
-              <h6 className="card__title">{work.title.value}</h6>
-              <p className="card__description">{work.description.value}</p>
-            </figcaption>
-          </figure>
-        </div>
+      {data.kontentItemHome.elements.works.linked_items.map(({ elements: work }) => (
+        <React.Fragment key={work.slug.value}>
+          {work.assets.value.map(asset => (
+            <div key={asset.name} className="showcase__item">
+              <figure className="card">
+                <Link to={`/work/${work.slug.value}`} className="card__image">
+                  <Img fluid={asset.fluid} />
+                </Link>
+                <figcaption className="card__caption">
+                  <h6 className="card__title">{work.title.value}</h6>
+                  <p className="card__description">{asset.description}</p>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
+        </React.Fragment>
       ))}
     </Masonry>
   </Layout>
@@ -41,33 +45,38 @@ export default Index;
 
 export const query = graphql`
   query {
-    allKontentItemHome {
-      nodes {
-        elements {
-          intro {
-            value
-          }
+    kontentItemHome {
+      elements {
+        intro {
+          value
         }
-      }
-    }
-    allKontentItemSculpture(sort: {fields: system___lastModified, order: DESC}) {
-      nodes {
-        elements {
-          title {
-            value
-          }
-          description {
-            value
-          }
-          image {
-            value {
-              fluid(maxWidth: 450) {
-                ...KontentAssetFluid
+        seo_metadata_example_to_include_in_any_type__meta_description {
+          value
+        }
+        seo_metadata_example_to_include_in_any_type__meta_title {
+          value
+        }
+        works {
+          linked_items {
+            ... on KontentItemWork {
+              elements {
+                slug {
+                  value
+                }
+                title {
+                  value
+                }
+                assets {
+                  value {
+                    fluid(maxWidth: 450) {
+                      ...KontentAssetFluid
+                    }
+                    name
+                    description
+                  }
+                }
               }
             }
-          }
-          slug {
-            value
           }
         }
       }
