@@ -26,7 +26,7 @@ const Biography = ({ data }) => (
     <Box>
       <div
         dangerouslySetInnerHTML={{
-          __html: data.kontentItemArticle.elements.body.resolvedData.html,
+          __html: data.kontentItemArticle.elements.body.value,
         }}
       />
     </Box>
