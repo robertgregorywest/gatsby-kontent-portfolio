@@ -10,10 +10,12 @@ const Biography = ({ data }) => (
   <Layout>
     <Head
       pageTitle={
-        data.kontentItemArticle.elements.seo_metadata_example_to_include_in_any_type__meta_title.value
+        data.kontentItemArticle.elements
+          .seo_metadata_example_to_include_in_any_type__meta_title.value
       }
       siteDescription={
-        data.kontentItemArticle.elements.seo_metadata_example_to_include_in_any_type__meta_description.value
+        data.kontentItemArticle.elements
+          .seo_metadata_example_to_include_in_any_type__meta_description.value
       }
     />
     <Box>
@@ -51,9 +53,7 @@ export const query = graphql`
           value
         }
         body {
-          resolvedData {
-            html
-          }
+          value
         }
       }
     }

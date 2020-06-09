@@ -13,10 +13,12 @@ const WorkTemplate = ({ data }) => (
   <Layout>
     <Head
       pageTitle={
-        data.kontentItemWork.elements.seo_metadata_example_to_include_in_any_type__meta_title.value
+        data.kontentItemWork.elements
+          .seo_metadata_example_to_include_in_any_type__meta_title.value
       }
       siteDescription={
-        data.kontentItemWork.elements.seo_metadata_example_to_include_in_any_type__meta_description.value
+        data.kontentItemWork.elements
+          .seo_metadata_example_to_include_in_any_type__meta_description.value
       }
     />
     <Box>
@@ -26,18 +28,20 @@ const WorkTemplate = ({ data }) => (
     </Box>
 
     <Masonry className="work">
-      {data.kontentItemWork.elements.assets.value.map(({ fluid, description }, id) => (
-        <div key={id} className="work__item">
-          <figure className="work__card">
-            <div className="work__image">
-              <Img fluid={fluid} />
-            </div>
-            <figcaption className="work__caption">
-              <p className="work__description">{description}</p>
-            </figcaption>
-          </figure>
-        </div>
-      ))}
+      {data.kontentItemWork.elements.assets.value.map(
+        ({ fluid, description }, id) => (
+          <div key={id} className="work__item">
+            <figure className="work__card">
+              <div className="work__image">
+                <Img fluid={fluid} />
+              </div>
+              <figcaption className="work__caption">
+                <p className="work__description">{description}</p>
+              </figcaption>
+            </figure>
+          </div>
+        )
+      )}
     </Masonry>
   </Layout>
 );
@@ -50,7 +54,7 @@ export default WorkTemplate;
 
 export const query = graphql`
   query WorkBySlug($slug: String!) {
-    kontentItemWork(elements: { slug: { value: { eq: $slug }}}) {
+    kontentItemWork(elements: { slug: { value: { eq: $slug } } }) {
       elements {
         title {
           value
@@ -63,7 +67,7 @@ export const query = graphql`
         }
         assets {
           value {
-            fluid(maxWidth: 750) {
+            fluid(maxWidth: 800) {
               ...KontentAssetFluid
             }
             description

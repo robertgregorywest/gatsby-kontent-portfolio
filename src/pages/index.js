@@ -16,9 +16,9 @@ const Index = ({ data }) => (
       </Title>
     </Box>
     <Masonry className="showcase">
-      {data.kontentItemHome.elements.works.linked_items.map(({ elements: work }) => (
+      {data.kontentItemHome.elements.works.value.map(({ elements: work }) => (
         <React.Fragment key={work.slug.value}>
-          {work.assets.value.map(asset => (
+          {work.assets.value.map((asset) => (
             <div key={asset.name} className="showcase__item">
               <figure className="card">
                 <Link to={`/work/${work.slug.value}`} className="card__image">
@@ -57,8 +57,8 @@ export const query = graphql`
           value
         }
         works {
-          linked_items {
-            ... on KontentItemWork {
+          value {
+            ... on kontent_item_work {
               elements {
                 slug {
                   value
@@ -68,7 +68,7 @@ export const query = graphql`
                 }
                 assets {
                   value {
-                    fluid(maxWidth: 450) {
+                    fluid(maxWidth: 500) {
                       ...KontentAssetFluid
                     }
                     name

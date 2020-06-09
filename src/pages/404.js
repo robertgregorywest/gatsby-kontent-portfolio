@@ -6,7 +6,9 @@ import Title from 'components/title';
 const NotFound = () => (
   <Layout>
     <Box>
-      <Title as="h2" size="large">Not Found</Title>
+      <Title as="h2" size="large">
+        Not Found
+      </Title>
     </Box>
     <Box>
       <p>The page you are looking for could not be found.</p>
